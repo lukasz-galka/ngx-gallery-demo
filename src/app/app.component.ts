@@ -67,9 +67,9 @@ export class AppComponent {
         });
 
         indexes.map(i => images.push({
-            small: '/assets/img/' + i + '-small.jpeg',
-            medium: '/assets/img/' + i + '-medium.jpeg',
-            big: '/assets/img/' + i + '-big.jpeg'
+            small: 'assets/img/' + i + '-small.jpeg',
+            medium: 'assets/img/' + i + '-medium.jpeg',
+            big: 'assets/img/' + i + '-big.jpeg'
         }))
 
         return images;
