@@ -1,3 +1,5 @@
-<h1>
-  {{title}}
-</h1>
+<div class="example" *ngFor="let example of examples; let i = index;">
+    <h1>{{i + 1}}. {{ example.title }}</h1>
+    <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
+    <options-viewer [options]=example.options></options-viewer>
+</div>
