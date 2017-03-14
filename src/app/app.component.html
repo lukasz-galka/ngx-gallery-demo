@@ -1,5 +1,10 @@
+<div class="top">
+    <h1>Angular2 Gallery</h1>
+    <a href="https://github.com/lukasz-galka/ngx-gallery" target="_blank">https://github.com/lukasz-galka/ngx-gallery</a>
+</div>
+
 <div class="example" *ngFor="let example of examples; let i = index;">
-    <h1>{{i + 1}}. {{ example.title }}</h1>
+    <h2>{{i + 1}}. {{ example.title }}</h2>
     <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
     <options-viewer [options]=example.options></options-viewer>
 </div>

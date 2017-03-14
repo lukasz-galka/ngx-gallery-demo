@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage } from 'C:/Github/ngx-gallery';
 import { Example } from './example.model';
 
 @Component({
