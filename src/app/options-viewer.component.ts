@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { NgxGalleryOptions } from 'C:/Github/ngx-gallery';
+import { NgxGalleryOptions } from 'ngx-gallery';
 
 @Component({
     selector: 'options-viewer',

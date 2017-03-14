@@ -1,4 +1,4 @@
-import { NgxGalleryOptions, NgxGalleryImage } from 'C:/Github/ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 
 export class Example {
     title: string;

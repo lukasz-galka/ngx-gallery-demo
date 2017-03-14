@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NgxGalleryOptions, NgxGalleryImage } from 'C:/Github/ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 import { Example } from './example.model';
 
 @Component({
@@ -19,21 +19,30 @@ export class AppComponent {
         this.examples.push(
             new Example('Simple gallery', this.getImages(), [{}, ...this.getResponsive()]),
 
-            new Example('Gallery with arrows auto hide', this.getImages(), [{
+            new Example('Arrows auto hide', this.getImages(), [{
                 imageArrowsAutoHide: true,
                 thumbnailsArrowsAutoHide: true
             }, ...this.getResponsive()]),
 
-            new Example('Gallery without preview', this.getImages(), [{
+            new Example('Disabled preview', this.getImages(), [{
                 preview: false
             }, ...this.getResponsive()]),
 
-            new Example('Gallery with custom layout', this.getImages(), [{
+            new Example('Custom layout', this.getImages(), [{
                 imagePercent: 80,
                 thumbnailsPercent: 20,
                 thumbnailsColumns: 6,
                 thumbnailsMargin: 0,
                 thumbnailMargin: 0,
+            }, ...this.getResponsive()]),
+
+            new Example('Thumbnails with multiple rows', this.getImages(), [{
+                thumbnailsColumns: 3,
+                thumbnailsRows: 2,
+                thumbnailsPercent: 40,
+                imagePercent: 60,
+                thumbnailMargin: 2,
+                thumbnailsMargin :2
             }, ...this.getResponsive()])
         )
     }
