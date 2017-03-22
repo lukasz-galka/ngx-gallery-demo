@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxLoremIpsumModule } from 'ngx-lorem-ipsum';
 
 import { AppComponent } from './app.component';
 import { OptionsViewerComponent } from './options-viewer.component';
@@ -17,7 +18,8 @@ import { OptionsViewerComponent } from './options-viewer.component';
         BrowserModule,
         FormsModule,
         HttpModule,
-        NgxGalleryModule
+        NgxGalleryModule,
+        NgxLoremIpsumModule
     ],
     providers: [],
     bootstrap: [AppComponent]

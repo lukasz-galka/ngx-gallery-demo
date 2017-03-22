@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
+import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './example.model';
 
@@ -12,14 +13,8 @@ import { Example } from './example.model';
 export class AppComponent {
 
     examples: Example[];
-    lorem: string[] = [];
 
-    constructor() {
-
-        this.lorem.push('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.');
-        this.lorem.push('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.');
-        this.lorem.push('Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.');
-        this.lorem.push('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+    constructor(private loremIpsumService: NgxLoremIpsumService) {
 
         this.examples = new Array<Example>();
 
@@ -107,7 +102,7 @@ export class AppComponent {
     }
 
     private getRandomDescription(): string {
-        return this.lorem.slice(0, this.getRandomInt(1, this.lorem.length)).join(' ');
+        return this.loremIpsumService.getRandom(1, 5);
     }
 
     private getRandomInt(min: number, max: number) {

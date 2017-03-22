@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "fontawesome": "^4.7.2",
     "ngx-gallery": "^0.4.0",
+    "ngx-lorem-ipsum": "^0.1.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.7.6"
   },
