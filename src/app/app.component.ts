@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import 'hammerjs';
 
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
@@ -56,6 +57,14 @@ export class AppComponent {
                 breakpoint: 500,
                 width: '100%'
             }]),
+
+            new Example('Swipe', this.getImages(), [{
+                imageArrows: false,
+                imageSwipe: true,
+                thumbnailsArrows: false,
+                thumbnailsSwipe: true,
+                previewSwipe: true
+            }, ...this.getResponsive()]),
 
             new Example('Arrows auto hide', this.getImages(), [{
                 imageArrowsAutoHide: true,
