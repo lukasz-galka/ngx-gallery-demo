@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import 'hammerjs';
 
-import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './example.model';
@@ -73,6 +73,18 @@ export class AppComponent {
 
             new Example('Disabled preview', this.getImages(), [{
                 preview: false
+            }, ...this.getResponsive()]),
+
+            new Example('Animation - Slide', this.getImages(), [{
+                imageAnimation: NgxGalleryAnimation.Slide
+            }, ...this.getResponsive()]),
+
+            new Example('Animation - Rotate', this.getImages(), [{
+                imageAnimation: NgxGalleryAnimation.Rotate
+            }, ...this.getResponsive()]),
+
+            new Example('Animation - Zoom', this.getImages(), [{
+                imageAnimation: NgxGalleryAnimation.Zoom
             }, ...this.getResponsive()])
         )
     }
@@ -119,8 +131,6 @@ export class AppComponent {
     }
 
     private randomizeArray(numbersArray: number[]) {
-        return numbersArray.sort(function() {
-            return .5 - Math.random();
-        });
+        return numbersArray.sort(() => .5 - Math.random());
     }
 }
