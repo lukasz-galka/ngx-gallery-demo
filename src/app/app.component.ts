@@ -40,6 +40,7 @@ export class AppComponent {
             }, ...this.getResponsive()]),
 
             new Example('Preview with image description', this.getImages(true), [{
+                previewFullscreen: true
             }, ...this.getResponsive()]),
 
             new Example('Only image', this.getImages(true), [{
