@@ -20,7 +20,7 @@ export class AppComponent {
         this.examples = new Array<Example>();
 
         this.examples.push(
-            new Example('Simple gallery', this.getImages(), [{ imageSize: NgxGalleryImageSize.Contain }, ...this.getResponsive()]),
+            new Example('Simple gallery', this.getImages(), [{}, ...this.getResponsive()]),
 
             new Example('Custom layout', this.getImages(), [{
                 imagePercent: 80,
