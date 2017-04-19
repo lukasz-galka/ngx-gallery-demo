@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import 'hammerjs';
 
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './example.model';
@@ -20,7 +20,7 @@ export class AppComponent {
         this.examples = new Array<Example>();
 
         this.examples.push(
-            new Example('Simple gallery', this.getImages(), [{}, ...this.getResponsive()]),
+            new Example('Simple gallery', this.getImages(), [{ imageSize: NgxGalleryImageSize.Contain }, ...this.getResponsive()]),
 
             new Example('Custom layout', this.getImages(), [{
                 imagePercent: 80,
@@ -28,6 +28,10 @@ export class AppComponent {
                 thumbnailsColumns: 6,
                 thumbnailsMargin: 0,
                 thumbnailMargin: 0,
+            }, ...this.getResponsive()]),
+
+            new Example('Image size - contain', this.getImages(), [{
+                imageSize: NgxGalleryImageSize.Contain
             }, ...this.getResponsive()]),
 
             new Example('Thumbnails with multiple rows', this.getImages(), [{

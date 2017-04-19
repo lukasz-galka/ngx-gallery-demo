@@ -22,3 +22,9 @@ html, body {
 ngx-gallery {
     margin-bottom: 20px;
 }
+
+ngx-gallery-arrows.ngx-gallery-image-size-contain .fa {
+    background: white;
+    padding: 5px;
+    color: black;
+}
