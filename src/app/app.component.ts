@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import 'hammerjs';
 
-import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage, 
+    NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './example.model';
@@ -11,12 +12,16 @@ import { Example } from './example.model';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
     examples: Example[];
 
-    constructor(private loremIpsumService: NgxLoremIpsumService) {
+    refreshOptions: NgxGalleryOptions[];
+    refreshImages: NgxGalleryImage[];
 
+    constructor(private loremIpsumService: NgxLoremIpsumService) {}
+
+    ngOnInit(): void {
         this.examples = new Array<Example>();
 
         this.examples.push(
@@ -92,6 +97,13 @@ export class AppComponent {
                 imageAnimation: NgxGalleryAnimation.Zoom
             }, ...this.getResponsive()])
         )
+
+        this.refreshOptions = [{}, ...this.getResponsive()];
+        this.refresh();
+    }
+
+    refresh(): void {
+        this.refreshImages = this.getImages();
     }
 
     private getResponsive(): NgxGalleryOptions[] {

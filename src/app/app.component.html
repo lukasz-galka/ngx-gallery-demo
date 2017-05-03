@@ -8,3 +8,10 @@
     <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
     <options-viewer [options]=example.options></options-viewer>
 </div>
+
+<div class="example">
+    <h2>{{ examples.length + 1 }}. {{ 'Refresh Images' }}</h2>
+    <button class="refresh" (click)="refresh()">Refresh</button>
+    <ngx-gallery [options]="refreshOptions" [images]="refreshImages"></ngx-gallery>
+    <options-viewer [options]="refreshOptions"></options-viewer>
+</div>
