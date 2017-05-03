@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
     }
 
     refresh(): void {
-        this.refreshImages = this.getImages();
+        this.refreshImages = this.getImages(true, true);
     }
 
     private getResponsive(): NgxGalleryOptions[] {
@@ -126,10 +126,16 @@ export class AppComponent implements OnInit {
         return options;
     }
 
-    private getImages(description: boolean = false): NgxGalleryImage[] {
+    private getImages(description: boolean = false, randomCount: boolean = false): NgxGalleryImage[] {
         let images = new Array<NgxGalleryImage>();
 
-        this.randomizeArray([1,2,3,4,5,6,7,8]).map(i => images.push({
+        let indexes = this.randomizeArray([1, 2, 3, 4, 5, 6, 7, 8]);
+
+        if (randomCount) {
+            indexes = indexes.slice(0, this.getRandomInt(1, 4));
+        }
+
+        indexes.map(i => images.push({
             small: 'assets/img/' + i + '-small.jpeg',
             medium: 'assets/img/' + i + '-medium.jpeg',
             big: 'assets/img/' + i + '-big.jpeg',
