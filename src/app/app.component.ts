@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
 
     examples: Example[];
 
-    refreshOptions: NgxGalleryOptions[];
-    refreshImages: NgxGalleryImage[];
+    changeExampleOptions: NgxGalleryOptions[];
+    changeExampleImages: NgxGalleryImage[];
 
     constructor(private loremIpsumService: NgxLoremIpsumService) {}
 
@@ -98,12 +98,12 @@ export class AppComponent implements OnInit {
             }, ...this.getResponsive()])
         )
 
-        this.refreshOptions = [{}, ...this.getResponsive()];
-        this.refresh();
+        this.changeExampleOptions = [{}, ...this.getResponsive()];
+        this.changeImages();
     }
 
-    refresh(): void {
-        this.refreshImages = this.getImages(true, true);
+    changeImages(): void {
+        this.changeExampleImages = this.getImages(true, true);
     }
 
     private getResponsive(): NgxGalleryOptions[] {
