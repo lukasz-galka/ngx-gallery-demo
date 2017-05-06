@@ -10,10 +10,20 @@
 </div>
 
 <div class="example">
-    <h2>{{ examples.length + 1 }}. {{ 'Change Images' }}</h2>
-    <button class="change" (click)="changeImages()">Change</button>
+    <h2>{{examples.length + 1}}. {{ 'Dynamic images change' }}</h2>
+    <div class="change-buttons">
+        <button class="change" (click)="changeImages()">Change All</button>
+        <button class="change" (click)="addImage()">Add one</button>
+        <button class="change" (click)="removeImage()">Remove one</button>
+    </div>
     <ngx-gallery [options]="changeExampleOptions" [images]="changeExampleImages"></ngx-gallery>
     <options-viewer [options]="changeExampleOptions"></options-viewer>
+</div>
+
+<div class="example">
+    <h2>{{ 'Async images' }} <i class="fa fa-spinner fa-pulse fa-3x fa-fw" [class.active]="asyncSpinnerActive"></i></h2>
+    <ngx-gallery [options]="asyncExampleOptions" [images]="asyncExampleImages"></ngx-gallery>
+    <options-viewer [options]="asyncExampleOptions"></options-viewer>
 </div>
 
 <div class="links">

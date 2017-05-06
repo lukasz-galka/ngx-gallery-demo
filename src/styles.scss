@@ -19,10 +19,14 @@ html, body {
     }
 }
 
-.change {
-    margin: 10px auto 20px;
-    position: relative;
+.change-buttons {
     display: block;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.change {
+    margin-right: 10px;
 }
 
 .links {
@@ -55,6 +59,15 @@ html, body {
 
 .icon:hover {
     fill: grey;
+}
+
+.fa.fa-spinner {
+    font-size: 30px;
+    display: none;
+
+    &.active {
+        display: inline-block;
+    }
 }
 
 ngx-gallery {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import 'hammerjs';
+import { Observable } from 'rxjs/Rx';
 
 import { NgxGalleryOptions, NgxGalleryImage, 
     NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
@@ -18,6 +19,10 @@ export class AppComponent implements OnInit {
 
     changeExampleOptions: NgxGalleryOptions[];
     changeExampleImages: NgxGalleryImage[];
+
+    asyncExampleOptions: NgxGalleryOptions[];
+    asyncExampleImages: NgxGalleryImage[];
+    asyncSpinnerActive: boolean = true;
 
     constructor(private loremIpsumService: NgxLoremIpsumService) {}
 
@@ -100,10 +105,28 @@ export class AppComponent implements OnInit {
 
         this.changeExampleOptions = [{}, ...this.getResponsive()];
         this.changeImages();
+
+        this.asyncExampleOptions = [{}, ...this.getResponsive()];
+        this.getAsyncImages().subscribe(images => {
+            this.asyncExampleImages = images;
+            this.asyncSpinnerActive = false;
+        });
     }
 
     changeImages(): void {
         this.changeExampleImages = this.getImages(true, true);
+    }
+
+    addImage(): void {
+        this.changeExampleImages.push(this.getImage(this.getRandomInt(1, 8), true));
+    }
+
+    removeImage(): void {
+        this.changeExampleImages.pop()    
+    }
+
+    private getAsyncImages(): Observable<NgxGalleryImage[]> {
+        return Observable.of(this.getImages()).delay(5000);
     }
 
     private getResponsive(): NgxGalleryOptions[] {
@@ -135,14 +158,18 @@ export class AppComponent implements OnInit {
             indexes = indexes.slice(0, this.getRandomInt(1, 4));
         }
 
-        indexes.map(i => images.push({
-            small: 'assets/img/' + i + '-small.jpeg',
-            medium: 'assets/img/' + i + '-medium.jpeg',
-            big: 'assets/img/' + i + '-big.jpeg',
-            description: description ? this.getRandomDescription() : ''
-        }))
+        indexes.map(i => images.push(this.getImage(i, description)));
 
         return images;
+    }
+
+    private getImage(index: number, description: boolean): NgxGalleryImage {
+        return {
+            small: 'assets/img/' + index + '-small.jpeg',
+            medium: 'assets/img/' + index + '-medium.jpeg',
+            big: 'assets/img/' + index + '-big.jpeg',
+            description: description ? this.getRandomDescription() : ''
+        }
     }
 
     private getRandomDescription(): string {
