@@ -21,7 +21,7 @@
 </div>
 
 <div class="example">
-    <h2>{{ 'Async images' }} <i class="fa fa-spinner fa-pulse fa-3x fa-fw" [class.active]="asyncSpinnerActive"></i></h2>
+    <h2>{{examples.length + 1}}. {{ 'Async images' }} <i class="fa fa-spinner fa-pulse fa-3x fa-fw" [class.active]="asyncSpinnerActive"></i></h2>
     <ngx-gallery [options]="asyncExampleOptions" [images]="asyncExampleImages"></ngx-gallery>
     <options-viewer [options]="asyncExampleOptions"></options-viewer>
 </div>
