@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
+
 import 'hammerjs';
 import { Observable } from 'rxjs/Rx';
+
+import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 
 import { NgxGalleryOptions, NgxGalleryImage, 
     NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
@@ -17,20 +22,27 @@ export class AppComponent implements OnInit {
 
     examples: Example[];
 
-    changeExampleOptions: NgxGalleryOptions[];
-    changeExampleImages: NgxGalleryImage[];
-
-    asyncExampleOptions: NgxGalleryOptions[];
-    asyncExampleImages: NgxGalleryImage[];
+    changeExample: Example;
+    asyncExample: Example;
     asyncSpinnerActive: boolean = true;
 
-    constructor(private loremIpsumService: NgxLoremIpsumService) {}
+    constructor(private loremIpsumService: NgxLoremIpsumService, 
+        private route: ActivatedRoute, private pageScrollService: PageScrollService, 
+        @Inject(DOCUMENT) private document: any) {}
 
     ngOnInit(): void {
+
+        this.route.fragment.subscribe((fragment: string) => {
+            if (fragment) {
+                this.pageScrollService.start(PageScrollInstance
+                    .simpleInstance(this.document, '#' + fragment));
+            }
+        })
+
         this.examples = new Array<Example>();
 
         this.examples.push(
-            new Example('Simple gallery', this.getImages(), [{}, ...this.getResponsive()]),
+            new Example('Simple gallery', this.getImages(), [{}]),
 
             new Example('Custom layout', this.getImages(), [{
                 imagePercent: 80,
@@ -38,11 +50,11 @@ export class AppComponent implements OnInit {
                 thumbnailsColumns: 6,
                 thumbnailsMargin: 0,
                 thumbnailMargin: 0,
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Image size - contain', this.getImages(), [{
                 imageSize: NgxGalleryImageSize.Contain
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Thumbnails with multiple rows', this.getImages(), [{
                 thumbnailsColumns: 3,
@@ -51,11 +63,11 @@ export class AppComponent implements OnInit {
                 imagePercent: 60,
                 thumbnailMargin: 2,
                 thumbnailsMargin :2
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Preview with image description', this.getImages(true), [{
                 previewFullscreen: true
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Only image', this.getImages(true), [{
                 thumbnails: false
@@ -79,74 +91,60 @@ export class AppComponent implements OnInit {
                 thumbnailsArrows: false,
                 thumbnailsSwipe: true,
                 previewSwipe: true
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Arrows auto hide', this.getImages(), [{
                 imageArrowsAutoHide: true,
                 thumbnailsArrowsAutoHide: true
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Disabled preview', this.getImages(), [{
                 preview: false
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Animation - Slide', this.getImages(), [{
                 imageAnimation: NgxGalleryAnimation.Slide
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Animation - Rotate', this.getImages(), [{
                 imageAnimation: NgxGalleryAnimation.Rotate
-            }, ...this.getResponsive()]),
+            }]),
 
             new Example('Animation - Zoom', this.getImages(), [{
                 imageAnimation: NgxGalleryAnimation.Zoom
-            }, ...this.getResponsive()])
+            }])
         )
 
-        this.changeExampleOptions = [{}, ...this.getResponsive()];
-        this.changeImages();
+        this.changeExample = new Example('Dynamic images change', 
+            this.getImages(true, true), [{}]);
 
-        this.asyncExampleOptions = [{}, ...this.getResponsive()];
+        this.asyncExample = new Example('Async images', [], [{}])
         this.getAsyncImages().subscribe(images => {
-            this.asyncExampleImages = images;
+            this.asyncExample.images = images;
             this.asyncSpinnerActive = false;
         });
     }
 
     changeImages(): void {
-        this.changeExampleImages = this.getImages(true, true);
+        this.changeExample.images = this.getImages(true, true);
     }
 
     addImage(): void {
-        this.changeExampleImages.push(this.getImage(this.getRandomInt(1, 8), true));
+        this.changeExample.images.push(this.getImage(this.getRandomInt(1, 8), true));
     }
 
     removeImage(): void {
-        this.changeExampleImages.pop()    
+        this.changeExample.images.pop()    
+    }
+
+    getUrlTitle(title: string) {
+        return title.toLowerCase()
+            .replace(new RegExp(' ', 'g'), '-')
+            .replace(new RegExp('---', 'g'), '-');
     }
 
     private getAsyncImages(): Observable<NgxGalleryImage[]> {
         return Observable.of(this.getImages()).delay(5000);
-    }
-
-    private getResponsive(): NgxGalleryOptions[] {
-
-        let options = new Array<NgxGalleryOptions>();
-
-        options.push({
-            breakpoint: 500,
-            width: '300px',
-            height: '300px',
-            thumbnailsColumns: 3
-        })
-        options.push({
-            breakpoint: 300,
-            width: '100%',
-            height: '200px',
-            thumbnailsColumns: 2
-        })
-
-        return options;
     }
 
     private getImages(description: boolean = false, randomCount: boolean = false): NgxGalleryImage[] {

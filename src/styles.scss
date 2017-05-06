@@ -7,8 +7,13 @@ html, body {
     text-align: center;
 }
 
+a:link, a:visited, a:hover, a:active  {
+    color: black;
+}
+
 .example {
     width: 100%;
+    float: left;
 }
 
 .top {

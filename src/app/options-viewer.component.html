@@ -1,4 +1,15 @@
-<div class="code">
+<div class="code-action-wrapper" *ngIf="!visibleCode">
+    <div class="code-action" (click)="showCode()">
+        Show code
+    </div>
+</div>
+<div class="code-action-wrapper" *ngIf="visibleCode">
+    <div class="code-action" (click)="hideCode()">
+        Hide code
+    </div>
+</div>
+
+<div class="code" [class.active]="visibleCode">
 [
 <div *ngFor="let option of options">{{option | json}}</div>
 ]
