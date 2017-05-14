@@ -1,0 +1,80 @@
+<div class="top">
+    <h1>Angular2 Gallery</h1>
+    <a href="https://github.com/lukasz-galka/ngx-gallery" target="_blank">https://github.com/lukasz-galka/ngx-gallery</a>
+</div>
+
+<div class="example" *ngFor="let example of examples; let i = index;">
+    <h2 id="{{ getUrlTitle(example.title) }}"><a href="{{ '#' + getUrlTitle(example.title) }}">{{ example.title }}</a></h2>
+    <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
+    <options-viewer [options]="example.options"></options-viewer>
+</div>
+
+<div class="example">
+    <h2 id="{{ getUrlTitle(changeExample.title) }}">
+        <a href="{{ '#' + getUrlTitle(changeExample.title) }}">
+            {{ changeExample.title }}
+        </a>
+    </h2>
+    <div class="change-buttons">
+        <button class="change" (click)="changeImages()">Change All</button>
+        <button class="change" (click)="addImage()">Add one</button>
+        <button class="change" (click)="removeImage()">Remove one</button>
+    </div>
+    <ngx-gallery [options]="changeExample.options" [images]="changeExample.images"></ngx-gallery>
+    <options-viewer [options]="changeExample.options"></options-viewer>
+</div>
+
+<div class="example">
+    <h2 id="{{ getUrlTitle(asyncExample.title) }}">
+        <a href="{{ '#' + getUrlTitle(asyncExample.title) }}">
+            {{ asyncExample.title }}
+        </a>
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw" [class.active]="asyncSpinnerActive"></i>
+    </h2>
+    <ngx-gallery [options]="asyncExample.options" [images]="asyncExample.images"></ngx-gallery>
+    <options-viewer [options]="asyncExample.options"></options-viewer>
+</div>
+
+<div class="links">
+    <a href="https://github.com/lukasz-galka" target="_blank">
+        <svg class="icon">
+            <use xlink:href="#si-dev-github_badge" />
+        </svg>
+    </a>
+
+    <a href="https://www.npmjs.com/~lukasz-galka" target="_blank">
+        <svg class="icon icon-npm">
+            <use xlink:href="#si-dev-npm" />
+        </svg>
+    </a>
+
+    <a href="http://blog.lukasz-galka.pl" target="_blank">
+        <svg class="icon">
+            <use xlink:href="#si-dev-wordpress" />
+        </svg>
+    </a>
+
+    <a href="https://www.linkedin.com/in/%C5%82ukasz-ga%C5%82ka-6187a2132/" target="_blank">
+        <svg class="icon">
+            <use xlink:href="#si-zocial-linkedin" />
+        </svg>
+    </a>
+
+    <a href="mailto:lukasz-galka@hotmail.com">
+        <svg class="icon">
+            <use xlink:href="#si-zocial-email" />
+        </svg>
+    </a>
+
+    <a href="https://www.intive.com" target="_blank">
+        <svg class="icon icon-intive">
+            <use xlink:href="#intive" />
+        </svg>
+    </a>
+
+    <a href="https://www.instagram.com/smilingsamoyedsammy/" target="_blank">
+        <svg class="icon">
+            <use xlink:href="#si-awesome-paw" />
+        </svg>
+    </a>
+</div>
