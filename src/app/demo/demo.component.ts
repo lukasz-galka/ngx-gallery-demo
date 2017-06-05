@@ -65,7 +65,8 @@ export class DemoComponent implements OnInit {
             }]),
 
             new Example('Preview with image description', this.getImages(true), [{
-                previewFullscreen: true
+                previewFullscreen: true,
+                previewKeyboardNavigation: true
             }]),
 
             new Example('Only image', this.getImages(true), [{

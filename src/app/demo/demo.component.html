@@ -4,14 +4,14 @@
 </div>
 
 <div class="example" *ngFor="let example of examples; let i = index;">
-    <h2 id="{{ getUrlTitle(example.title) }}"><a href="{{ '#' + getUrlTitle(example.title) }}">{{ example.title }}</a></h2>
+    <h2 id="{{ getUrlTitle(example.title) }}"><a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(example.title) }}">{{ example.title }}</a></h2>
     <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
     <options-viewer [options]="example.options"></options-viewer>
 </div>
 
 <div class="example">
     <h2 id="{{ getUrlTitle(changeExample.title) }}">
-        <a href="{{ '#' + getUrlTitle(changeExample.title) }}">
+        <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(changeExample.title) }}">
             {{ changeExample.title }}
         </a>
     </h2>
@@ -26,7 +26,7 @@
 
 <div class="example">
     <h2 id="{{ getUrlTitle(asyncExample.title) }}">
-        <a href="{{ '#' + getUrlTitle(asyncExample.title) }}">
+        <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(asyncExample.title) }}">
             {{ asyncExample.title }}
         </a>
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw" [class.active]="asyncSpinnerActive"></i>
