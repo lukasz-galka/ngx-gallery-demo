@@ -10,12 +10,25 @@
 </div>
 
 <div class="example">
+    <h2 id="{{ getUrlTitle(onlyPreviewExample.title) }}">
+        <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(onlyPreviewExample.title) }}">
+            {{ onlyPreviewExample.title }}
+        </a>
+    </h2>
+    <div class="buttons-wrapper">
+        <button (click)="openPreview()">Open Preview</button>
+    </div>
+    <ngx-gallery [options]="onlyPreviewExample.options" [images]="onlyPreviewExample.images" #onlyPreviewGallery></ngx-gallery>
+    <options-viewer [options]="onlyPreviewExample.options"></options-viewer>
+</div>
+
+<div class="example">
     <h2 id="{{ getUrlTitle(changeExample.title) }}">
         <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(changeExample.title) }}">
             {{ changeExample.title }}
         </a>
     </h2>
-    <div class="change-buttons">
+    <div class="buttons-wrapper">
         <button class="change" (click)="changeImages()">Change All</button>
         <button class="change" (click)="addImage()">Add one</button>
         <button class="change" (click)="removeImage()">Remove one</button>

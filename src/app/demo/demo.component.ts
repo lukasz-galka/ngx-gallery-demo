@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 
@@ -7,8 +7,8 @@ import { Observable } from 'rxjs/Rx';
 
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 
-import { NgxGalleryOptions, NgxGalleryImage, 
-    NgxGalleryAnimation, NgxGalleryImageSize } from 'ngx-gallery';
+import { NgxGalleryOptions, NgxGalleryImage,
+    NgxGalleryAnimation, NgxGalleryImageSize, NgxGalleryComponent } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './../example.model';
@@ -21,12 +21,15 @@ export class DemoComponent implements OnInit {
 
     examples: Example[];
 
+    onlyPreviewExample: Example;
+    @ViewChild('onlyPreviewGallery') onlyPreviewGallery: NgxGalleryComponent;
+
     changeExample: Example;
     asyncExample: Example;
     asyncSpinnerActive: boolean = true;
 
-    constructor(private loremIpsumService: NgxLoremIpsumService, 
-        private route: ActivatedRoute, private pageScrollService: PageScrollService, 
+    constructor(private loremIpsumService: NgxLoremIpsumService,
+        private route: ActivatedRoute, private pageScrollService: PageScrollService,
         @Inject(DOCUMENT) private document: any) {}
 
     ngOnInit(): void {
@@ -115,7 +118,14 @@ export class DemoComponent implements OnInit {
             }])
         )
 
-        this.changeExample = new Example('Dynamic images change', 
+        this.onlyPreviewExample = new Example('Only preview', this.getImages(), [{
+            image: false,
+            thumbnails: false,
+            width: '0px',
+            height: '0px'
+        }])
+
+        this.changeExample = new Example('Dynamic images change',
             this.getImages(true, true), [{}]);
 
         this.asyncExample = new Example('Async images', [], [{}])
@@ -123,6 +133,10 @@ export class DemoComponent implements OnInit {
             this.asyncExample.images = images;
             this.asyncSpinnerActive = false;
         });
+    }
+
+    openPreview(): void {
+        this.onlyPreviewGallery.openPreview(0);
     }
 
     changeImages(): void {
@@ -134,7 +148,7 @@ export class DemoComponent implements OnInit {
     }
 
     removeImage(): void {
-        this.changeExample.images.pop()    
+        this.changeExample.images.pop()
     }
 
     getUrlTitle(title: string) {
