@@ -44,7 +44,7 @@ export class DemoComponent implements OnInit {
         this.examples = new Array<Example>();
 
         this.examples.push(
-            new Example('Simple gallery', this.getImages(), [{}]),
+            new Example('Simple gallery', this.getImages(), [{ previewCloseOnEsc: true }]),
 
             new Example('Custom layout', this.getImages(), [{
                 imagePercent: 80,
@@ -67,7 +67,7 @@ export class DemoComponent implements OnInit {
                 thumbnailsMargin :2
             }]),
 
-            new Example('Preview with image description', this.getImages(true), [{
+            new Example('Preview with image description and fullscreen', this.getImages(true), [{
                 previewFullscreen: true,
                 previewKeyboardNavigation: true
             }]),
@@ -94,6 +94,15 @@ export class DemoComponent implements OnInit {
                 thumbnailsArrows: false,
                 thumbnailsSwipe: true,
                 previewSwipe: true
+            }]),
+
+            new Example('Custom icons', this.getImages(), [{
+                arrowPrevIcon: 'fa fa-arrow-circle-o-left',
+                arrowNextIcon: 'fa fa-arrow-circle-o-right',
+                closeIcon: 'fa fa-window-close',
+                fullscreenIcon: 'fa fa-arrows',
+                spinnerIcon: 'fa fa-refresh fa-spin fa-3x fa-fw',
+                previewFullscreen: true
             }]),
 
             new Example('Arrows auto hide', this.getImages(), [{
