@@ -23,6 +23,16 @@
 </div>
 
 <div class="example">
+    <h2 id="{{ getUrlTitle(safeExample.title) }}">
+        <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(safeExample.title) }}">
+            {{ safeExample.title }}
+        </a>
+    </h2>
+    <ngx-gallery [options]="safeExample.options" [images]="safeExample.images"></ngx-gallery>
+    <options-viewer [options]="safeExample.options"></options-viewer>
+</div>
+
+<div class="example">
     <h2 id="{{ getUrlTitle(changeExample.title) }}">
         <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(changeExample.title) }}">
             {{ changeExample.title }}

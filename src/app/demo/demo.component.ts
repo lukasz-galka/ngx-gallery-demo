@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import 'hammerjs';
 import { Observable } from 'rxjs/Rx';
@@ -24,13 +24,14 @@ export class DemoComponent implements OnInit {
     onlyPreviewExample: Example;
     @ViewChild('onlyPreviewGallery') onlyPreviewGallery: NgxGalleryComponent;
 
+    safeExample: Example;
     changeExample: Example;
     asyncExample: Example;
     asyncSpinnerActive: boolean = true;
 
     constructor(private loremIpsumService: NgxLoremIpsumService,
         private route: ActivatedRoute, private pageScrollService: PageScrollService,
-        @Inject(DOCUMENT) private document: any) {}
+        @Inject(DOCUMENT) private document: any, private sanitization: DomSanitizer) {}
 
     ngOnInit(): void {
 
@@ -134,6 +135,9 @@ export class DemoComponent implements OnInit {
             height: '0px'
         }])
 
+        this.safeExample = new Example('Images as SafeResourceURL',
+            this.getSafeImages(true), [{}]);
+
         this.changeExample = new Example('Dynamic images change',
             this.getImages(true, true), [{}]);
 
@@ -189,6 +193,24 @@ export class DemoComponent implements OnInit {
             small: 'assets/img/' + index + '-small.jpeg',
             medium: 'assets/img/' + index + '-medium.jpeg',
             big: 'assets/img/' + index + '-big.jpeg',
+            description: description ? this.getRandomDescription() : ''
+        }
+    }
+
+    private getSafeImages(description: boolean = false): NgxGalleryImage[] {
+        let images = new Array<NgxGalleryImage>();
+        let indexes = this.randomizeArray([1, 2, 3, 4, 5, 6, 7, 8]);
+
+        indexes.map(i => images.push(this.getImage(i, description)));
+
+        return images;
+    }
+
+    private getSafeImage(index: number, description: boolean): NgxGalleryImage {
+        return {
+            small: this.sanitization.bypassSecurityTrustResourceUrl('assets/img/' + index + '-small.jpeg'),
+            medium: this.sanitization.bypassSecurityTrustResourceUrl('assets/img/' + index + '-medium.jpeg'),
+            big: this.sanitization.bypassSecurityTrustResourceUrl('assets/img/' + index + '-big.jpeg'),
             description: description ? this.getRandomDescription() : ''
         }
     }
