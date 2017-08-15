@@ -73,6 +73,11 @@ export class DemoComponent implements OnInit {
                 previewKeyboardNavigation: true
             }]),
 
+            new Example('Preview with fullscreen on start', this.getImages(true), [{
+                previewFullscreen: true,
+                previewForceFullscreen: true
+            }]),
+
             new Example('Only image', this.getImages(true), [{
                 thumbnails: false
             }, {
