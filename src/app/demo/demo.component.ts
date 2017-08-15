@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { PageScrollService, PageScrollInstance } from 'ng2-page-scroll';
 
 import { NgxGalleryOptions, NgxGalleryImage,
-    NgxGalleryAnimation, NgxGalleryImageSize, NgxGalleryComponent } from 'ngx-gallery';
+    NgxGalleryAnimation, NgxGalleryImageSize, NgxGalleryComponent, NgxGalleryLayout } from 'ngx-gallery';
 import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import { Example } from './../example.model';
@@ -66,6 +66,10 @@ export class DemoComponent implements OnInit {
                 imagePercent: 60,
                 thumbnailMargin: 2,
                 thumbnailsMargin :2
+            }]),
+
+            new Example('Thumbnails on top', this.getImages(), [{
+                layout: NgxGalleryLayout.ThumbnailsTop
             }]),
 
             new Example('Preview with image description and fullscreen', this.getImages(true), [{
