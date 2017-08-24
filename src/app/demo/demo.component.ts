@@ -124,6 +124,9 @@ export class DemoComponent implements OnInit {
                 preview: false
             }]),
 
+            new Example('Using the same images', [this.getImage(1, false), this.getImage(1, false), this.getImage(1, false)], [{
+            }]),
+
             new Example('Animation - Slide', this.getImages(), [{
                 imageAnimation: NgxGalleryAnimation.Slide
             }]),
