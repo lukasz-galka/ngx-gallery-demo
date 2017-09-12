@@ -137,6 +137,10 @@ export class DemoComponent implements OnInit {
 
             new Example('Animation - Zoom', this.getImages(), [{
                 imageAnimation: NgxGalleryAnimation.Zoom
+            }]),
+
+            new Example('Custom start index', this.getImages(), [{
+                startIndex: 4
             }])
         )
 
