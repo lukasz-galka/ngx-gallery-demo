@@ -72,6 +72,11 @@ export class DemoComponent implements OnInit {
                 layout: NgxGalleryLayout.ThumbnailsTop
             }]),
 
+            new Example('Auto play', this.getImages(), [{
+                imageAutoPlay: true,
+                previewAutoPlay: true
+            }]),
+
             new Example('Preview with image description and fullscreen', this.getImages(true), [{
                 previewFullscreen: true,
                 previewKeyboardNavigation: true
