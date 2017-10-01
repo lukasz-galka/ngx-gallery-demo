@@ -74,7 +74,9 @@ export class DemoComponent implements OnInit {
 
             new Example('Auto play', this.getImages(), [{
                 imageAutoPlay: true,
-                previewAutoPlay: true
+                imageAutoPlayPauseOnHover: true,
+                previewAutoPlay: true,
+                previewAutoPlayPauseOnHover: true
             }]),
 
             new Example('Preview with image description and fullscreen', this.getImages(true), [{
