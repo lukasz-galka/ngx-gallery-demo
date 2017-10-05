@@ -1,5 +1,0 @@
-<div class="example" *ngFor="let example of examples; let i = index;">
-    <h2 id="{{ getUrlTitle(example.title) }}"><a href="{{ '/custom#' + getUrlTitle(example.title) }}">{{ example.title }}</a></h2>
-    <ngx-gallery [options]="example.options" [images]="example.images"></ngx-gallery>
-    <options-viewer [options]="example.options"></options-viewer>
-</div>
