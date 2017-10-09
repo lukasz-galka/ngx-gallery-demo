@@ -69,6 +69,10 @@ export class AppComponent implements OnInit {
         thumbnailsMargin: 2
       }]),
 
+      new Example('Move whole thumbnails row', this.getImages(), [{
+        thumbnailsMoveSize: 4
+      }]),
+
       new Example('Thumbnails on top', this.getImages(), [{
         layout: NgxGalleryLayout.ThumbnailsTop
       }]),
