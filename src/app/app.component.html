@@ -25,6 +25,20 @@
 </div>
 
 <div class="example">
+  <h2 id="{{ getUrlTitle(buttonsNavigationExample.title) }}">
+      <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(buttonsNavigationExample.title) }}">
+          {{ buttonsNavigationExample.title }}
+      </a>
+  </h2>
+  <div class="buttons-wrapper">
+      <button (click)="showPrev()" [disabled]="!canShowPrev()">Show Prev</button>
+      <button (click)="showNext()" [disabled]="!canShowNext()">Show Next</button>
+  </div>
+  <ngx-gallery [options]="buttonsNavigationExample.options" [images]="buttonsNavigationExample.images" #buttonsNavigationGallery></ngx-gallery>
+  <options-viewer [options]="buttonsNavigationExample.options"></options-viewer>
+</div>
+
+<div class="example">
   <h2 id="{{ getUrlTitle(onlyPreviewExample.title) }}">
       <a href="{{ '/ngx-gallery-demo/#' + getUrlTitle(onlyPreviewExample.title) }}">
           {{ onlyPreviewExample.title }}

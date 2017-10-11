@@ -26,6 +26,9 @@ export class AppComponent implements OnInit {
   onlyPreviewExample: Example;
   @ViewChild('onlyPreviewGallery') onlyPreviewGallery: NgxGalleryComponent;
 
+  buttonsNavigationExample: Example;
+  @ViewChild('buttonsNavigationGallery') buttonsNavigationGallery: NgxGalleryComponent;
+
   safeExample: Example;
   changeExample: Example;
   asyncExample: Example;
@@ -35,13 +38,6 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: any, private sanitization: DomSanitizer) { }
 
   ngOnInit(): void {
-
-    // this.route.fragment.subscribe((fragment: string) => {
-    //   if (fragment) {
-    //     this.pageScrollService.start(PageScrollInstance
-    //       .simpleInstance(this.document, '#' + fragment));
-    //   }
-    // })
 
     this.examples = new Array<Example>();
 
@@ -156,6 +152,11 @@ export class AppComponent implements OnInit {
       }])
     )
 
+    this.buttonsNavigationExample = new Example('Buttons navigation', this.getImages(), [{
+      imageArrows: false,
+      thumbnailsArrows: false
+    }])
+
     this.onlyPreviewExample = new Example('Only preview', this.getImages(), [{
       image: false,
       thumbnails: false,
@@ -196,6 +197,22 @@ export class AppComponent implements OnInit {
     return title.toLowerCase()
       .replace(new RegExp(' ', 'g'), '-')
       .replace(new RegExp('---', 'g'), '-');
+  }
+
+  showNext(): void {
+    this.buttonsNavigationGallery.showNext();
+  }
+
+  showPrev(): void {
+    this.buttonsNavigationGallery.showPrev();
+  }
+
+  canShowNext(): boolean {
+    return this.buttonsNavigationGallery.canShowNext();
+  }
+
+  canShowPrev(): boolean {
+    return this.buttonsNavigationGallery.canShowPrev();
   }
 
   private getAsyncImages(): Observable<NgxGalleryImage[]> {
