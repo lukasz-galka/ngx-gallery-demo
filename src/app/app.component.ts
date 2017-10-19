@@ -9,7 +9,8 @@ import { NgxLoremIpsumService } from 'ngx-lorem-ipsum';
 
 import {
   NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation,
-  NgxGalleryImageSize, NgxGalleryComponent, NgxGalleryLayout
+  NgxGalleryImageSize, NgxGalleryComponent, NgxGalleryLayout,
+  NgxGalleryOrder
 } from 'ngx-gallery';
 
 import { Example } from './example.model';
@@ -42,7 +43,7 @@ export class AppComponent implements OnInit {
     this.examples = new Array<Example>();
 
     this.examples.push(
-      new Example('Simple gallery', this.getImages(), [{ previewCloseOnEsc: true }]),
+      new Example('Simple gallery', this.getImages(), [{}]),
 
       new Example('Custom layout', this.getImages(), [{
         imagePercent: 80,
@@ -56,13 +57,23 @@ export class AppComponent implements OnInit {
         imageSize: NgxGalleryImageSize.Contain
       }]),
 
-      new Example('Thumbnails with multiple rows', this.getImages(), [{
+      new Example('Thumbnails with multiple rows', this.getImages(false, false, false), [{
         thumbnailsColumns: 3,
         thumbnailsRows: 2,
         thumbnailsPercent: 40,
         imagePercent: 60,
         thumbnailMargin: 2,
         thumbnailsMargin: 2
+      }]),
+
+      new Example('Thumbnails with multiple rows and images order by rows', this.getImages(false, false, false), [{
+        thumbnailsColumns: 3,
+        thumbnailsRows: 2,
+        thumbnailsPercent: 40,
+        imagePercent: 60,
+        thumbnailMargin: 2,
+        thumbnailsMargin: 2,
+        thumbnailsOrder: NgxGalleryOrder.Row
       }]),
 
       new Example('Move whole thumbnails row', this.getImages(), [{
@@ -90,6 +101,11 @@ export class AppComponent implements OnInit {
         previewForceFullscreen: true
       }]),
 
+      new Example('Preview with closing on esc and click', this.getImages(true), [{
+        previewCloseOnClick: true,
+        previewCloseOnEsc: true
+      }]),
+
       new Example('Only image', this.getImages(true), [{
         thumbnails: false
       }, {
@@ -104,6 +120,16 @@ export class AppComponent implements OnInit {
       }, {
         breakpoint: 500,
         width: '100%'
+      }]),
+
+      new Example('Thumbnails with remaining count', this.getImages(true), [{
+        image: false,
+        thumbnailsRemainingCount: true,
+        height: '100px'
+      }, {
+        breakpoint: 500,
+        width: '100%',
+        thumbnailsColumns: 2
       }]),
 
       new Example('Swipe', this.getImages(), [{
@@ -219,10 +245,13 @@ export class AppComponent implements OnInit {
     return Observable.of(this.getImages()).delay(5000);
   }
 
-  private getImages(description: boolean = false, randomCount: boolean = false): NgxGalleryImage[] {
+  private getImages(description: boolean = false, randomCount: boolean = false, randomize: boolean = true): NgxGalleryImage[] {
     let images = new Array<NgxGalleryImage>();
+    let indexes = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    let indexes = this.randomizeArray([1, 2, 3, 4, 5, 6, 7, 8]);
+    if (randomize) {
+      indexes = this.randomizeArray(indexes);
+    }
 
     if (randomCount) {
       indexes = indexes.slice(0, this.getRandomInt(1, 4));
