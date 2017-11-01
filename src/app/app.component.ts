@@ -106,6 +106,10 @@ export class AppComponent implements OnInit {
         previewCloseOnEsc: true
       }]),
 
+      new Example('Preview with zoom', this.getImages(true), [{
+        previewZoom: true
+      }]),
+
       new Example('Only image', this.getImages(true), [{
         thumbnails: false
       }, {
