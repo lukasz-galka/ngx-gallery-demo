@@ -67,11 +67,11 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/core@4.4.4
+@angular/core@4.4.6
 MIT
 MIT
 
-ng2-page-scroll@4.0.0-beta.11
+ng2-page-scroll@4.0.0-beta.12
 MIT
 The MIT License (MIT)
 
@@ -95,7 +95,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-ngx-gallery@3.1.1
+ngx-gallery@3.1.2
 MIT
 MIT
 
@@ -103,11 +103,11 @@ ngx-lorem-ipsum@0.1.1
 MIT
 MIT
 
-@angular/platform-browser@4.4.4
+@angular/platform-browser@4.4.6
 MIT
 MIT
 
-@angular/common@4.4.4
+@angular/common@4.4.6
 MIT
 MIT
 
