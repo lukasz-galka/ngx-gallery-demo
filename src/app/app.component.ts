@@ -91,6 +91,10 @@ export class AppComponent implements OnInit {
         previewAutoPlayPauseOnHover: true
       }]),
 
+      new Example('Image with description', this.getImages(true), [{
+        imageDescription: true
+      }]),
+
       new Example('Preview with image description and fullscreen', this.getImages(true), [{
         previewFullscreen: true,
         previewKeyboardNavigation: true
